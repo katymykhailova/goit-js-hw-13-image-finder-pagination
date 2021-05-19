@@ -1,14 +1,15 @@
 // pnotify
 import { info } from '@pnotify/core';
 import * as PNotifyAnimate from '@pnotify/animate';
-
 import { defaults } from '@pnotify/animate';
 defaults.inClass = 'fadeInDown';
 defaults.outClass = 'fadeOutUp';
-
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/bootstrap4/dist/PNotifyBootstrap4.css';
+
+//basiclightbox
+import * as basicLightbox from 'basiclightbox';
 
 import galleryTpl from './template/pictures.hbs';
 import './sass/main.scss';
@@ -29,10 +30,24 @@ const refs = {
 };
 
 refs.searchForm.addEventListener('submit', onSearch);
+refs.galleryContainer.addEventListener('click', onCardClick);
 
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 const heightFormContainer = refs.formContainer.clientHeight;
 let top = 0;
+
+function onCardClick(evt) {
+  evt.preventDefault();
+
+  const isGalleryImgEl = evt.target.classList.contains('gallery__img');
+  if (!isGalleryImgEl) {
+    return;
+  }
+  const src = evt.target.dataset.source;
+  // openModal(evt.target.dataset.source, evt.target.dataset.index);
+  const instance = basicLightbox.create(`<img src="${src}" width="800" height="600">`);
+  instance.show();
+}
 
 function scrollTo() {
   window.scrollTo({
