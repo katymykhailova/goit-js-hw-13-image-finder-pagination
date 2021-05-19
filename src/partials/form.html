@@ -1,8 +1,18 @@
 <!-- Путь к изображениям из HTML-фрагмента такой, как из файла index.html -->
 <!-- <img src="images/demo.jpg" alt="" width="320" /> -->
-<div class="container">
-  <form class="search-form" id="search-form">
-    <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
-    <button type="submit" class="search-btn">Search</button>
+<div class="container form-container">
+  <form class="form-inline search-form js-search-form" id="search-form">
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="searchQuery" class="sr-only">Search images...</label>
+      <input
+        type="text"
+        class="form-control"
+        name="query"
+        id="searchQuery"
+        placeholder="Search images..."
+        autocomplete="off"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
   </form>
 </div>

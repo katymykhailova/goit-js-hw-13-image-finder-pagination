@@ -1,23 +1,24 @@
   {{#each this}}
-  <li class="gallery__item"><div class="photo-card">
+  <li class="gallery__item">
+    <div class="photo-card">
     <img class="gallery__img" src={{webformatURL}} alt={{tags}} />
   
     <div class="stats">
       <p class="stats-item">
         <i class="material-icons">thumb_up</i>
-        {{likes}}
+        <span>{{likes}}</span>
       </p>
       <p class="stats-item">
         <i class="material-icons">visibility</i>
-        {{views}}
+        <span>{{views}}</span>
       </p>
       <p class="stats-item">
         <i class="material-icons">comment</i>
-        {{comments}}
+        <span>{{comments}}</span>
       </p>
       <p class="stats-item">
         <i class="material-icons">cloud_download</i>
-        {{downloads}}
+        <span>{{downloads}}</span>
       </p>
     </div>
   </div></li>

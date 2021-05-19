@@ -9,20 +9,20 @@ export default class LoadMoreBtn {
     const refs = {};
     refs.button = document.querySelector(selector);
     refs.label = refs.button.querySelector('.label');
-    refs.spinner = refs.button.querySelector('.spinner');
+    refs.spinner = refs.button.querySelector('.spinner-grow');
 
     return refs;
   }
 
   enable() {
     this.refs.button.disabled = false;
-    this.refs.label.textContent = 'Показать ещё';
+    this.refs.label.textContent = 'Load more';
     this.refs.spinner.classList.add('is-hidden');
   }
 
   disable() {
     this.refs.button.disabled = true;
-    this.refs.label.textContent = 'Загружаем...';
+    this.refs.label.textContent = 'Loading...';
     this.refs.spinner.classList.remove('is-hidden');
   }
 
