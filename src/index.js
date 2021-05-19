@@ -44,7 +44,6 @@ function onCardClick(evt) {
     return;
   }
   const src = evt.target.dataset.source;
-  // openModal(evt.target.dataset.source, evt.target.dataset.index);
   const instance = basicLightbox.create(`<img src="${src}" width="800" height="600">`);
   instance.show();
 }
