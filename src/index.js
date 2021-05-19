@@ -15,7 +15,7 @@ import galleryTpl from './template/pictures.hbs';
 import NewsApiService from './js/apiService';
 import LoadMoreBtn from './js/components/load-more-btn';
 import './sass/main.scss';
-import './dist/basicLightbox.min.css';
+// import './dist/basicLightbox.min.css';
 
 const newsApiService = new NewsApiService();
 const loadMoreBtn = new LoadMoreBtn({
