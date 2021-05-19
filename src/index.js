@@ -12,9 +12,10 @@ import '@pnotify/bootstrap4/dist/PNotifyBootstrap4.css';
 import * as basicLightbox from 'basiclightbox';
 
 import galleryTpl from './template/pictures.hbs';
-import './sass/main.scss';
 import NewsApiService from './js/apiService';
 import LoadMoreBtn from './js/components/load-more-btn';
+import './sass/main.scss';
+import './dist/basicLightbox.min.css';
 
 const newsApiService = new NewsApiService();
 const loadMoreBtn = new LoadMoreBtn({
