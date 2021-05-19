@@ -57,19 +57,18 @@ function onSearch(e) {
   fetchPictures();
 }
 
-function fetchPictures() {
+async function fetchPictures() {
   loadMoreBtn.disable();
-  newsApiService.fetchPictures().then(hits => {
-    if (hits.length == 0) {
-      loadMoreBtn.hide();
-      return info({
-        text: 'No country has been found. Please enter a more specific query!',
-      });
-    }
-    appendPicturesMarkup(hits);
-    loadMoreBtn.enable();
-    scrollTo();
-  });
+  const hits = await newsApiService.fetchPictures();
+  if (hits.length == 0) {
+    loadMoreBtn.hide();
+    return info({
+      text: 'No country has been found. Please enter a more specific query!',
+    });
+  }
+  appendPicturesMarkup(hits);
+  loadMoreBtn.enable();
+  scrollTo();
 }
 
 function appendPicturesMarkup(pictures) {

@@ -10,16 +10,13 @@ export default class NewsApiService {
     this.page = 1;
   }
 
-  fetchPictures() {
+  async fetchPictures() {
     const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${API_KEY}`;
-    return fetch(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(({ hits }) => {
-        this.incrementPage();
-        return hits;
-      });
+    const response = await fetch(url);
+    const pictures = await response.json();
+    const { hits } = await pictures;
+    this.incrementPage();
+    return hits;
   }
 
   incrementPage() {
