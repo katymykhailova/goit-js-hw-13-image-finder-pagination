@@ -75,6 +75,7 @@ function onSearch(e) {
   newsApiService.resetPage();
   clearPicturesContainer();
   fetchPictures();
+  e.currentTarget.elements.query.value = '';
 }
 
 async function fetchPictures() {
