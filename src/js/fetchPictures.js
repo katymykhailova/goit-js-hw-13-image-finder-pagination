@@ -7,9 +7,6 @@ import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/bootstrap4/dist/PNotifyBootstrap4.css';
 
-//basiclightbox
-import * as basicLightbox from 'basiclightbox';
-
 // templates
 import galleryTpl from '../template/pictures.hbs';
 
@@ -28,35 +25,18 @@ const loadMoreBtn = new LoadMoreBtn({
 });
 const refs = getRefs();
 const heightFormContainer = refs.formContainer.clientHeight;
-let heightgalleryContainer = 0;
+let heightGalleryContainer = 0;
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.galleryContainer.addEventListener('click', onCardClick);
 loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
 
-function onCardClick(evt) {
-  evt.preventDefault();
-
-  const isGalleryImgEl = evt.target.classList.contains('gallery__img');
-  if (!isGalleryImgEl) {
-    return;
-  }
-  const src = evt.target.dataset.source;
-  openModal(src);
-}
-
-function openModal(src) {
-  const instance = basicLightbox.create(`<img src="${src}" width="800" height="600">`);
-  instance.show();
-}
-
 function scrollTo() {
-  if (heightgalleryContainer === 0) {
+  if (heightGalleryContainer === 0) {
     return;
   }
 
   window.scrollTo({
-    top: heightgalleryContainer + heightFormContainer,
+    top: heightGalleryContainer + heightFormContainer,
     behavior: 'smooth',
   });
 }
@@ -99,7 +79,7 @@ async function fetchPictures() {
 }
 
 function appendPicturesMarkup(pictures) {
-  heightgalleryContainer = refs.galleryContainer.clientHeight;
+  heightGalleryContainer = refs.galleryContainer.clientHeight;
   refs.picturesContainer.insertAdjacentHTML('beforeend', galleryTpl(pictures));
 }
 
