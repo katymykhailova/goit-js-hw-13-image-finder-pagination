@@ -11,14 +11,14 @@ import '@pnotify/bootstrap4/dist/PNotifyBootstrap4.css';
 import galleryTpl from '../template/pictures.hbs';
 
 // modules
-import NewsApiService from './apiService';
+import PicturesApiService from './apiService';
 import LoadMoreBtn from './components/load-more-btn';
 
 // refs
 import getRefs from './components/get-refs';
 
 // variables
-const newsApiService = new NewsApiService();
+const picturesApiService = new PicturesApiService();
 const loadMoreBtn = new LoadMoreBtn({
   selector: '[data-action="load-more"]',
   hidden: true,
@@ -44,15 +44,15 @@ function scrollTo() {
 function onSearch(e) {
   e.preventDefault();
 
-  newsApiService.query = e.currentTarget.elements.query.value.trim();
+  picturesApiService.query = e.currentTarget.elements.query.value.trim();
 
-  if (newsApiService.query === '') {
+  if (picturesApiService.query === '') {
     return info({
       text: 'You must enter query parameters. Try again',
     });
   }
   loadMoreBtn.show();
-  newsApiService.resetPage();
+  picturesApiService.resetPage();
   clearPicturesContainer();
   fetchPictures();
   e.currentTarget.elements.query.value = '';
@@ -61,7 +61,7 @@ function onSearch(e) {
 async function fetchPictures() {
   try {
     loadMoreBtn.disable();
-    const hits = await newsApiService.fetchPictures();
+    const hits = await picturesApiService.fetchPictures();
     if (hits.length == 0) {
       loadMoreBtn.hide();
       return info({
