@@ -20,7 +20,7 @@ export default class NewPagination {
   updatepageList() {
     this.clearPaginationContainer();
     this.pageList = [];
-    if (this.currentPage <= this.lastPage - 1) {
+    if (this.currentPage <= this.length - 3) {
       for (let i = this.firstPage; i <= this.length - 2; i += 1) {
         this.pageList.push(i);
       }
@@ -32,13 +32,17 @@ export default class NewPagination {
     ) {
       this.pageList.push(1);
       this.pageList.push('...');
-      for (let i = this.maxPage - 6; i <= this.maxPage; i += 1) {
+      for (let i = this.maxPage - this.length + 3; i <= this.maxPage; i += 1) {
         this.pageList.push(i);
       }
     } else {
       this.pageList.push(1);
       this.pageList.push('...');
-      for (let i = this.currentPage - 2; i <= +this.currentPage + 2; i += 1) {
+      for (
+        let i = this.currentPage - Math.round((this.length - 5) / 2);
+        i <= +this.currentPage + Math.round((this.length - 5) / 2);
+        i += 1
+      ) {
         this.pageList.push(i);
       }
       this.pageList.push('...');
