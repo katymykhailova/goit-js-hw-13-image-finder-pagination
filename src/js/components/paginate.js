@@ -53,6 +53,8 @@ export default class NewPagination {
 
   appendPaginationMarkup() {
     this.refs.paginateContainer.insertAdjacentHTML('beforeend', paginateTpl(this.pageList));
+    const currentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
+    currentEl.parentElement.classList.add('active');
   }
 
   clearPaginationContainer() {
