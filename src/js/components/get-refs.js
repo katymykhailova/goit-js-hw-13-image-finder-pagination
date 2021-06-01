@@ -4,6 +4,7 @@ export default function getRefs() {
     picturesContainer: document.querySelector('.gallery'),
     galleryContainer: document.querySelector('.gallery-container'),
     formContainer: document.querySelector('.form-container'),
+    paginateContainer: document.querySelector('.paginate-container'),
     bodyEl: document.body,
   };
 }

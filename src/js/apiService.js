@@ -4,10 +4,11 @@
 const BASE_URL = 'https://pixabay.com/api';
 const API_KEY = '21396115-cf31dc04a3ddd307b254525ae';
 
-export default class NewsApiService {
+export default class NewApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.currentPage = 1;
   }
 
   async fetchPictures() {
@@ -16,6 +17,23 @@ export default class NewsApiService {
     const pictures = await response.json();
     const { hits } = await pictures;
     this.incrementPage();
+    return hits;
+  }
+
+  async fetchAllPictures() {
+    const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&page=${this.page}&per_page=12&key=${API_KEY}`;
+    const response = await fetch(url);
+    const pictures = await response.json();
+    const { hits } = await pictures;
+    this.incrementPage();
+    return hits;
+  }
+
+  async fetchPicturesPagination() {
+    const url = `${BASE_URL}/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.currentPage}&per_page=12&key=${API_KEY}`;
+    const response = await fetch(url);
+    const pictures = await response.json();
+    const { hits } = await pictures;
     return hits;
   }
 
