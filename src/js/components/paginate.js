@@ -8,6 +8,7 @@ export default class NewPagination {
     this.firstPage = 1;
     this.lastPage = 7;
     this.maxPage = 42;
+    this.length = 9;
   }
 
   getRefs(selector) {
@@ -20,12 +21,15 @@ export default class NewPagination {
     this.clearPaginationContainer();
     this.pageList = [];
     if (this.currentPage <= this.lastPage - 1) {
-      for (let i = this.firstPage; i <= this.lastPage; i += 1) {
+      for (let i = this.firstPage; i <= this.length - 2; i += 1) {
         this.pageList.push(i);
       }
       this.pageList.push('...');
       this.pageList.push(this.maxPage);
-    } else if (this.currentPage == this.maxPage - 6 || this.currentPage == this.maxPage) {
+    } else if (
+      this.currentPage == this.maxPage - this.length + 3 ||
+      this.currentPage == this.maxPage
+    ) {
       this.pageList.push(1);
       this.pageList.push('...');
       for (let i = this.maxPage - 6; i <= this.maxPage; i += 1) {
