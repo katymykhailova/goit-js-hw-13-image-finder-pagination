@@ -27,7 +27,7 @@ export default class NewPagination {
       this.pageList.push('...');
       this.pageList.push(this.maxPage);
     } else if (
-      this.currentPage == this.maxPage - this.length + 3 ||
+      this.currentPage >= this.maxPage - this.length + 4 ||
       this.currentPage == this.maxPage
     ) {
       this.pageList.push(1);
