@@ -57,9 +57,11 @@ function onSearch(e) {
   }
   loadMoreBtn.show();
   picturesApiService.resetPage();
+  pagination.resetCurrentPage();
   clearPicturesContainer();
   fetchPictures();
   e.currentTarget.elements.query.value = '';
+  pagination.updatePageList();
 }
 
 function onSearchPagination(e) {
@@ -70,7 +72,7 @@ function onSearchPagination(e) {
 
   clearPicturesContainer();
   fetchPicturesPagination();
-  pagination.updatepageList();
+  pagination.updatePageList();
 }
 
 async function fetchPictures() {
@@ -148,5 +150,5 @@ fetchAllPictures();
 
 function appendPaginationMarkup() {
   // pagination.length = 11;
-  pagination.updatepageList();
+  pagination.updatePageList();
 }

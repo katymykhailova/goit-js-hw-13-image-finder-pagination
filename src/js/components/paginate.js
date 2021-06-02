@@ -17,7 +17,7 @@ export default class NewPagination {
     return refs;
   }
 
-  updatepageList() {
+  updatePageList() {
     this.clearPaginationContainer();
     this.pageList = [];
     if (this.currentPage <= this.length - 3) {
@@ -59,5 +59,9 @@ export default class NewPagination {
 
   clearPaginationContainer() {
     this.refs.paginateContainer.innerHTML = '';
+  }
+
+  resetCurrentPage() {
+    this.currentPage = 1;
   }
 }
