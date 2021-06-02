@@ -147,5 +147,6 @@ function clearPicturesContainer() {
 fetchAllPictures();
 
 function appendPaginationMarkup() {
+  // pagination.length = 11;
   pagination.updatepageList();
 }
