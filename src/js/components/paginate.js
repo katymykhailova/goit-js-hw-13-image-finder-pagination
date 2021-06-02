@@ -64,4 +64,12 @@ export default class NewPagination {
   resetCurrentPage() {
     this.currentPage = 1;
   }
+
+  show() {
+    this.refs.paginateContainer.classList.remove('is-hidden');
+  }
+
+  hide() {
+    this.refs.paginateContainer.classList.add('is-hidden');
+  }
 }

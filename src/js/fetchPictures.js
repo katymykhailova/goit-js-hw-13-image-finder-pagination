@@ -56,6 +56,7 @@ function onSearch(e) {
     });
   }
   loadMoreBtn.show();
+  pagination.show();
   picturesApiService.resetPage();
   pagination.resetCurrentPage();
   clearPicturesContainer();
@@ -81,6 +82,7 @@ async function fetchPictures() {
     const hits = await picturesApiService.fetchPictures();
     if (hits.length == 0) {
       loadMoreBtn.hide();
+      pagination.hide();
       return info({
         text: 'No country has been found. Please enter a more specific query!',
       });
@@ -98,11 +100,13 @@ async function fetchPictures() {
 async function fetchAllPictures() {
   try {
     loadMoreBtn.show();
+    pagination.show();
     loadMoreBtn.disable();
     const hits = await picturesApiService.fetchAllPictures();
 
     if (hits.length == 0) {
       loadMoreBtn.hide();
+      pagination.hide();
       return info({
         text: 'No country has been found. Please enter a more specific query!',
       });
@@ -123,6 +127,7 @@ async function fetchPicturesPagination() {
     const hits = await picturesApiService.fetchPicturesPagination();
     if (hits.length == 0) {
       loadMoreBtn.hide();
+      pagination.hide();
       return info({
         text: 'No country has been found. Please enter a more specific query!',
       });
