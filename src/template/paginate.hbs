@@ -1,3 +1,19 @@
-  {{#each this}}
+  {{#if end}}
+  <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+  <li class="page-item disabled"><a class="page-link" href="#" data-page="...">...</a></li>
+  {{/if}}
+  {{#if middle}}
+  <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+  <li class="page-item disabled"><a class="page-link" href="#" data-page="...">...</a></li>
+  {{/if}}
+  {{#each pageList}}
     <li class="page-item" ><a class="page-link" href="#" data-page = {{this}}>{{this}}</a></li>
   {{/each}}
+  {{#if start}}
+  <li class="page-item disabled"><a class="page-link" href="#" data-page="...">...</a></li>
+  <li class="page-item"><a class="page-link" href="#" data-page={{maxPage}}>{{maxPage}}</a></li>
+  {{/if}}
+  {{#if middle}}
+  <li class="page-item disabled"><a class="page-link" href="#" data-page="...">...</a></li>
+  <li class="page-item"><a class="page-link" href="#" data-page={{maxPage}}>{{maxPage}}</a></li>
+  {{/if}}

@@ -74,10 +74,12 @@ function onSearch(e) {
 
 function onSearchPagination(e) {
   e.preventDefault();
+  if (e.target.classList.contains('disabled')) {
+    return;
+  }
 
   picturesApiService.currentPage = e.target.dataset.page;
   pagination.currentPage = e.target.dataset.page;
-
   clearPicturesContainer();
   fetchPicturesPagination();
   pagination.updatePageList();

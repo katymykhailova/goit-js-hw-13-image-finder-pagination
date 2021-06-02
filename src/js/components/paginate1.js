@@ -9,7 +9,6 @@ export default class NewPagination {
     this.lastPage = 7;
     this.maxPage = 42;
     this.length = 9;
-    this.pages = {};
   }
 
   getRefs(selector) {
@@ -20,35 +19,25 @@ export default class NewPagination {
 
   updatePageList() {
     this.clearPaginationContainer();
-    this.pages = {};
     this.pageList = [];
     if (this.currentPage <= this.length - 3) {
       for (let i = this.firstPage; i <= this.length - 2; i += 1) {
         this.pageList.push(i);
       }
-
-      this.pages = {
-        start: true,
-        end: false,
-        middle: false,
-        pageList: this.pageList,
-        maxPage: this.maxPage,
-      };
+      this.pageList.push('...');
+      this.pageList.push(this.maxPage);
     } else if (
       this.currentPage >= this.maxPage - this.length + 4 ||
       this.currentPage == this.maxPage
     ) {
+      this.pageList.push(1);
+      this.pageList.push('...');
       for (let i = this.maxPage - this.length + 3; i <= this.maxPage; i += 1) {
         this.pageList.push(i);
       }
-      this.pages = {
-        start: false,
-        end: true,
-        middle: false,
-        pageList: this.pageList,
-        maxPage: this.maxPage,
-      };
     } else {
+      this.pageList.push(1);
+      this.pageList.push('...');
       for (
         let i = this.currentPage - Math.round((this.length - 5) / 2);
         i <= +this.currentPage + Math.round((this.length - 5) / 2);
@@ -56,19 +45,14 @@ export default class NewPagination {
       ) {
         this.pageList.push(i);
       }
-      this.pages = {
-        start: false,
-        end: false,
-        middle: true,
-        pageList: this.pageList,
-        maxPage: this.maxPage,
-      };
+      this.pageList.push('...');
+      this.pageList.push(this.maxPage);
     }
     this.appendPaginationMarkup();
   }
 
   appendPaginationMarkup() {
-    this.refs.paginateContainer.insertAdjacentHTML('beforeend', paginateTpl(this.pages));
+    this.refs.paginateContainer.insertAdjacentHTML('beforeend', paginateTpl(this.pageList));
     const currentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
     currentEl.parentElement.classList.add('active');
   }
