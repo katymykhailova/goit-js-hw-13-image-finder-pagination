@@ -56,7 +56,6 @@ function onSearch(e) {
     });
   }
   loadMoreBtn.show();
-  pagination.show();
   picturesApiService.resetPage();
   pagination.resetCurrentPage();
   clearPicturesContainer();
@@ -87,6 +86,7 @@ async function fetchPictures() {
         text: 'No country has been found. Please enter a more specific query!',
       });
     }
+    pagination.show();
     appendPicturesMarkup(hits);
     loadMoreBtn.enable();
     scrollTo();
@@ -100,7 +100,6 @@ async function fetchPictures() {
 async function fetchAllPictures() {
   try {
     loadMoreBtn.show();
-    pagination.show();
     loadMoreBtn.disable();
     const hits = await picturesApiService.fetchAllPictures();
 
@@ -111,6 +110,7 @@ async function fetchAllPictures() {
         text: 'No country has been found. Please enter a more specific query!',
       });
     }
+    pagination.show();
     appendPicturesMarkup(hits);
     appendPaginationMarkup();
     loadMoreBtn.enable();
