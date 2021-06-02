@@ -65,6 +65,14 @@ export default class NewPagination {
     this.currentPage = 1;
   }
 
+  incrementCurrentPage() {
+    const oldCurrentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
+    oldCurrentEl.parentElement.classList.remove('active');
+    this.currentPage = +this.currentPage + 1;
+    const newCurrentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
+    newCurrentEl.parentElement.classList.add('active');
+  }
+
   show() {
     this.refs.paginateContainer.classList.remove('is-hidden');
   }

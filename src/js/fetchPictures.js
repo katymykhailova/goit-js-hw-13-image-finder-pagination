@@ -31,7 +31,7 @@ const heightFormContainer = refs.formContainer.clientHeight;
 let heightGalleryContainer = 0;
 
 refs.searchForm.addEventListener('submit', onSearch);
-loadMoreBtn.refs.button.addEventListener('click', fetchPictures);
+loadMoreBtn.refs.button.addEventListener('click', onLoadMoreClick);
 pagination.refs.paginateContainer.addEventListener('click', onSearchPagination);
 
 function scrollTo() {
@@ -43,6 +43,11 @@ function scrollTo() {
     top: heightGalleryContainer + heightFormContainer,
     behavior: 'smooth',
   });
+}
+
+function onLoadMoreClick() {
+  pagination.incrementCurrentPage();
+  fetchPictures();
 }
 
 function onSearch(e) {
@@ -123,6 +128,7 @@ async function fetchAllPictures() {
 
 async function fetchPicturesPagination() {
   try {
+    loadMoreBtn.show();
     loadMoreBtn.disable();
     const hits = await picturesApiService.fetchPicturesPagination();
     if (hits.length == 0) {
@@ -133,8 +139,11 @@ async function fetchPicturesPagination() {
       });
     }
     appendPicturesMarkup(hits);
-
-    loadMoreBtn.enable();
+    if (pagination.currentPage == pagination.maxPage) {
+      loadMoreBtn.hide();
+    } else {
+      loadMoreBtn.enable();
+    }
   } catch (error) {
     info({
       text: 'Sorry. we cannot process your request!',
