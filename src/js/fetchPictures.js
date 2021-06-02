@@ -47,6 +47,9 @@ function scrollTo() {
 
 function onLoadMoreClick() {
   pagination.incrementCurrentPage();
+  if (pagination.currentPage == pagination.maxPage) {
+    loadMoreBtn.hide();
+  }
   fetchPictures();
 }
 
