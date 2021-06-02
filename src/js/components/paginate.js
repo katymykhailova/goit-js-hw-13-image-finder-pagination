@@ -66,11 +66,8 @@ export default class NewPagination {
   }
 
   incrementCurrentPage() {
-    const oldCurrentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
-    oldCurrentEl.parentElement.classList.remove('active');
     this.currentPage = +this.currentPage + 1;
-    const newCurrentEl = document.querySelector(`[data-page="${this.currentPage}"]`);
-    newCurrentEl.parentElement.classList.add('active');
+    this.updatePageList();
   }
 
   show() {
